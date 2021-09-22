@@ -1,8 +1,10 @@
-import { authService } from "fbase";
+import { authService, firebaseInstance } from "fbase";
 import { useState } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from "firebase/auth";
 
 const Auth = () => {
@@ -11,6 +13,22 @@ const Auth = () => {
   const [newAccount, setNewAccount] = useState(true);
   const [error, setError] = useState("");
   const toggleAccount = () => setNewAccount((prev) => !prev);
+
+  const onSocialClick = async (event) => {
+    const {
+      target: { name },
+    } = event;
+    let provider;
+    if (name === "google") {
+      provider = new GoogleAuthProvider();
+    } else if (name === "anonymous") {
+      provider = new firebaseInstance.auth.GithubAuthProvider();
+    }
+    // const data = await signInWithPopup(authService, provider);
+    const data = await authService.signInWithPopup(provider);
+
+    console.log(data);
+  };
 
   const onChange = (event) => {
     const {
@@ -69,8 +87,12 @@ const Auth = () => {
       <button onClick={toggleAccount}>
         {newAccount ? "Sign In" : "Create Account"}
       </button>
-      <button>Google로 시작하기</button>
-      <button>익명으로 시작하기</button>
+      <button onClick={onSocialClick} name="google">
+        Google로 시작하기
+      </button>
+      <button onClick={onSocialClick} name="anonymous">
+        익명으로 시작하기
+      </button>
     </div>
   );
 };
