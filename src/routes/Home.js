@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { addDoc, getDocs, onSnapshot, collection } from "firebase/firestore";
 import { dbService } from "fbase";
+import Sweet from "components/Sweet";
 
 const Home = ({ userObj }) => {
   console.log(userObj);
@@ -66,9 +67,11 @@ const Home = ({ userObj }) => {
       </form>
       <div>
         {sweets.map((sweet) => (
-          <div key={sweet.id}>
-            <h4>{sweet.text}</h4>
-          </div>
+          <Sweet
+            key={sweet.id}
+            sweetObj={sweet}
+            isOwner={sweet.creatorId === userObj.uid}
+          />
         ))}
       </div>
     </>
