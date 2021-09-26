@@ -24,6 +24,7 @@ const Profile = ({ userObj }) => {
     if (userObj.displayName != newDisplayName) {
       updateProfile(userObj, { displayName: newDisplayName });
     }
+    window.location.reload();
   };
 
   return (
