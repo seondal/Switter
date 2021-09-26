@@ -22,7 +22,11 @@ const Auth = () => {
     if (name === "google") {
       provider = new GoogleAuthProvider();
     } else if (name === "anonymous") {
-      provider = new firebaseInstance.auth.GithubAuthProvider();
+      // provider = new firebaseInstance.auth.GithubAuthProvider();
+      // setEmail("anonymous");
+      // setPassword("anonymous");
+      window.alert("마감시간이 촉박해서 구현을 못했다 흑흑");
+      window.location.reload();
     }
     // const data = await signInWithPopup(authService, provider);
     const data = await signInWithPopup(authService, provider);
