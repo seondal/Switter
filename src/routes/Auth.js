@@ -6,6 +6,13 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTwitter,
+  faGoogle,
+  faGithub,
+} from "@fortawesome/free-brands-svg-icons";
+import logo from "../clock.jpg";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -67,36 +74,47 @@ const Auth = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
+    <div className="authContainer">
+      <img src={logo} style={{ marginBottom: 30, width: "8%" }} />
+      <form onSubmit={onSubmit} className="container">
         <input
           name="email"
           type="email"
-          placeholder="Email"
+          placeholder="이메일"
           required
           value={email}
           onChange={onChange}
+          className="authInput"
         />
         <input
           name="password"
           type="password"
-          placeholder="Password"
+          placeholder="비밀번호"
           required
           value={password}
           onChange={onChange}
+          className="authInput"
         />
-        <input type="submit" value={newAccount ? "Create Account" : "Log In"} />
-        {error}
+        <input
+          type="submit"
+          value={newAccount ? "회원가입" : "로그인"}
+          className="authInput authSubmit"
+        />
+        {error && <span className="authError">{error}</span>}
       </form>
-      <button onClick={toggleAccount}>
-        {newAccount ? "Sign In" : "Create Account"}
+      <button onClick={toggleAccount} className="authSwitch">
+        {newAccount
+          ? "이미 비밀번호가 있으신가요? 로그인"
+          : "에브리선달이 처음이신가요? 회원가입"}
       </button>
-      <button onClick={onSocialClick} name="google">
-        Google로 시작하기
-      </button>
-      <button onClick={onSocialClick} name="anonymous">
-        익명으로 시작하기
-      </button>
+      <div className="authBtns">
+        <button onClick={onSocialClick} name="google" className="authBtn">
+          Google로 로그인 <FontAwesomeIcon icon={faGoogle} />
+        </button>
+        <button onClick={onSocialClick} name="anonymous" className="authBtn">
+          익명으로 시작하기
+        </button>
+      </div>
     </div>
   );
 };

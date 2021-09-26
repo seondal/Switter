@@ -54,27 +54,31 @@ const Home = ({ userObj }) => {
   };
 
   return (
-    <>
-      <form onSubmit={onSubmit}>
-        <input
-          value={sweet}
-          onChange={onChange}
-          type="text"
-          placeholder="What's on your mind?"
-          maxLength={120}
-        />
-        <input type="submit" value="Sweet" />
-      </form>
-      <div>
+    <div className="container">
+      <div className="factoryInput__container">
+        <form onSubmit={onSubmit}>
+          <input
+            value={sweet}
+            onChange={onChange}
+            type="text"
+            placeholder="내용을 입력하세요"
+            style={{ width: "80%" }}
+          />
+          <input type="submit" value="완료" className="factoryInput__arrow" />
+        </form>
+      </div>
+
+      <div style={{ marginTop: 10 }}>
         {sweets.map((sweet) => (
           <Sweet
             key={sweet.id}
             sweetObj={sweet}
             isOwner={sweet.creatorId === userObj.uid}
+            creatorId={sweet.createdAt}
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

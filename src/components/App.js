@@ -26,7 +26,15 @@ function App() {
       ) : (
         "initializing...."
       )}
-      <footer>&copy; {new Date().getFullYear()} Switter </footer>
+      <footer
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "30px",
+        }}
+      >
+        &copy; {new Date().getFullYear()} Seondal{" "}
+      </footer>
     </>
   );
 }
