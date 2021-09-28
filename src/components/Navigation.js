@@ -1,14 +1,41 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
+import { faUser, faClock } from "@fortawesome/free-regular-svg-icons";
 import logo from "../clock.jpg";
+import { stringify } from "@firebase/util";
 
 const Navigation = ({ userObj }) => {
+  const [page, setPage] = useState("");
+
   return (
     <nav>
-      <ul style={{ display: "flex", justifyContent: "center", marginTop: 50 }}>
-        <img src={logo} style={{ marginBottom: 0, width: "8%" }} />
+      <ul
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "row",
+          marginTop: 50,
+        }}
+      >
+        <img src={logo} style={{ marginBottom: 0, width: "5%" }} />
+        {page === "home" ? (
+          <Link
+            to="/profile"
+            style={{ position: "relative", top: "10px", right: "-100px" }}
+            onClick={() => setPage((prev) => "profile")}
+          >
+            <FontAwesomeIcon icon={faUser} color={"var(--main)"} size="2x" />
+          </Link>
+        ) : (
+          <Link
+            to="/"
+            style={{ position: "relative", top: "10px", right: "-100px" }}
+            onClick={() => setPage((prev) => "home")}
+          >
+            <FontAwesomeIcon icon={faClock} color={"var(--main)"} size="2x" />
+          </Link>
+        )}
 
         {/* <li>
           <Link to="/" style={{ marginRight: 0 }}>

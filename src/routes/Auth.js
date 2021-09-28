@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   GoogleAuthProvider,
+  updateProfile,
 } from "firebase/auth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -14,7 +15,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import logo from "../clock.jpg";
 
-const Auth = () => {
+const Auth = (userObj) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [newAccount, setNewAccount] = useState(true);
@@ -63,6 +64,7 @@ const Auth = () => {
           email,
           password
         );
+        updateProfile(userObj, { displayName: "익명" });
       } else {
         //log in
         data = await signInWithEmailAndPassword(authService, email, password);

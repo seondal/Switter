@@ -6,7 +6,7 @@ import { faTractor } from "@fortawesome/free-solid-svg-icons";
 import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 import anony from "../anony.png";
 
-const Sweet = ({ sweetObj, isOwner, creatorId }) => {
+const Sweet = ({ sweetObj, isOwner, creatorId, userObj }) => {
   const [editing, setEditing] = useState(false);
   const [newSweet, setNewSweet] = useState(sweetObj.text);
 
@@ -53,9 +53,14 @@ const Sweet = ({ sweetObj, isOwner, creatorId }) => {
               flexDirection: "row",
               marginBottom: "20px",
               justifyContent: "space-between",
+              alignItems: "center",
             }}
           >
-            <button onClick={toggleEditing} className="formBtn cancelBtn">
+            <button
+              onClick={toggleEditing}
+              className="formBtn cancelBtn"
+              style={{ border: "none", width: "10px" }}
+            >
               x
             </button>
             <input

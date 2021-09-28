@@ -29,7 +29,19 @@ const Profile = ({ userObj }) => {
 
   return (
     <div className="container">
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          border: "grey solid",
+          padding: "20px",
+          marginBottom: "30px",
+        }}
+      >
+        <h3>{userObj.displayName}님 안녕하세요!</h3>
+      </div>
       <form onSubmit={onSubmit} className="profileForm">
+        <div style={{ color: "gray" }}>닉네임 변경하기</div>
         <input
           onChange={onChange}
           type="text"
@@ -40,13 +52,13 @@ const Profile = ({ userObj }) => {
         />
         <input
           type="submit"
-          value="Update Profile"
+          value="결정"
           className="formBtn"
           style={{ margintTop: 10 }}
         />
       </form>
       <span className="formBtn cancelBtn logOut" onClick={onLogOutClick}>
-        Log Out
+        로그아웃
       </span>
     </div>
   );
