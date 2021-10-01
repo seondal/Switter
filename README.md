@@ -1,6 +1,6 @@
 # Switter
 
-### ⬇️ Deployed
+### ⬇️ Link
 https://seondal.github.io/Switter
 
 <br>
